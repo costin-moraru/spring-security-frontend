@@ -4,8 +4,6 @@ import MainToolBar from './components/MainToolBar';
 
 function App() {
 
-  
-
   return (
     <div className="App">
         <MainToolBar />
