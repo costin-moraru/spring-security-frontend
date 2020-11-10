@@ -1,7 +1,6 @@
 import React /*, { useState } */ from 'react'
 // import { useSelector, useDispatch } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-// import { Trans } from 'react-i18next';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -10,7 +9,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-
+import { withNamespaces } from 'react-i18next';
 
 const styles = (theme) => ({
     root: {
@@ -55,6 +54,7 @@ const DialogTitle = withStyles(styles)((props) => {
 function LoginDialog(props) {
 
     const { setDialogState, dialogState, onLoginSuccess } = props;
+    const { t } = props;
 
     const closeLoginDialog = () => {
         setDialogState(false);
@@ -69,8 +69,8 @@ function LoginDialog(props) {
         <div>
             <Dialog onClose={closeLoginDialog} aria-labelledby="customized-dialog-title" open={dialogState}>
                 <DialogTitle id="customized-dialog-title" onClose={closeLoginDialog}>
-                    Modal title
-            </DialogTitle>
+                    {t('title')}
+                </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
@@ -96,4 +96,4 @@ function LoginDialog(props) {
     )
 }
 
-export default LoginDialog;
+export default withNamespaces('login')(LoginDialog);

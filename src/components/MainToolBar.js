@@ -5,11 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { Trans } from 'react-i18next';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 import LeftSideNav from './LeftSideNav';
 import { setAuthentication, selectAuth } from '../reducers/authenticationReducer';
 import LoginDialog from './account/LoginDialog';
+import { withNamespaces } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MainToolBar(props) {
     const classes = useStyles();
+    const { t } = props;
     const authentication = useSelector(selectAuth);
     const dispatch = useDispatch();
     const [loginDialogOpen, setLoginDialogOpen] = useState(false);
@@ -46,7 +47,7 @@ function MainToolBar(props) {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <Trans>Repair Mangement</Trans>
+                        {t('app_title')}
                     </Typography>
                     <Button color="inherit" onClick={openLoginDialog}>Login</Button>
                 </Toolbar>
@@ -60,7 +61,7 @@ function MainToolBar(props) {
     )
 }
 
-export default MainToolBar;
+export default withNamespaces('common')(MainToolBar);
 
 
 // onClick={() => {
